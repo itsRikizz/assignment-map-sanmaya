@@ -70,7 +70,9 @@ function RegionInput({ onSelect }) {
   };
 
   const handleLoadMap = () => {
-    onSelect(regions[selectedRegion]);
+    if (regions[selectedRegion]) {
+      onSelect(regions[selectedRegion]);
+    }
   };
 
   return (
