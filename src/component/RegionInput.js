@@ -1,44 +1,55 @@
 import React, { useState } from "react";
-import { Select } from "antd";
-import Map from "./Map";
+import { Select, Button } from "antd";
 
 const { Option } = Select;
 
 function RegionInput({ onSelect }) {
   const regions = {
-    World: { lat: 0, lng: 0, zoom: 2 },
-    "United States": { lat: 39.8283, lng: -98.5795, zoom: 4 },
-    India: { lat: 20.5937, lng: 78.9629, zoom: 4 },
-    "United Kingdom": { lat: 54.7024, lng: -3.2766, zoom: 4 },
+    "United States": {
+      center: [37.8, -96],
+      zoom: 4,
+    },
+    India: {
+      center: [22, 77],
+      zoom: 4.2,
+    },
+    "United Kingdom": {
+      center: [54.5, -3],
+      zoom: 3,
+    },
   };
 
-  const [selectedRegion, setSelectedRegion] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState("Select Region");
 
-  const handleSelect = (region) => {
-    setSelectedRegion(region);
+  const handleChange = (value) => {
+    setSelectedRegion(value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleLoadMap = () => {
     onSelect(regions[selectedRegion]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <Select
-        name='region'
-        defaultValue='World'
-        style={{ width: 120 }}
-        onSelect={handleSelect}
+        value={selectedRegion}
+        style={{ width: 200 }}
+        onChange={handleChange}
       >
-        <Option value='World'>World</Option>
-        <Option value='United States'>United States</Option>
-        <Option value='India'>India</Option>
-        <Option value='United Kingdom'>United Kingdom</Option>
+        {Object.keys(regions).map((region) => (
+          <Option key={region} value={region}>
+            {region}
+          </Option>
+        ))}
       </Select>
-      <button type='submit'>Load</button>
-      <Map center={regions[selectedRegion]} />
-    </form>
+      <Button
+        type='primary'
+        style={{ marginLeft: "16px" }}
+        onClick={handleLoadMap}
+      >
+        Load
+      </Button>
+    </div>
   );
 }
 

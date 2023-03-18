@@ -1,41 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 
-function Map() {
-  const [position, setPosition] = useState([0, 0]);
-  const [zoom, setZoom] = useState(1);
-
-  function getLatLngForRegion(region) {
-    switch (region) {
-      case "United States":
-        return [37.0902, -95.7129];
-      case "India":
-        return [20.5937, 78.9629];
-      case "United Kingdom":
-        return [55.3781, -3.436];
-      default:
-        return [0, 0];
-    }
-  }
+const Map = ({ region }) => {
+  const position = region.center;
 
   return (
-    <>
-      <MapContainer
-        center={position}
-        zoom={zoom}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          attribution='OpenStreetMap'
-        />
-        {/* <Marker position={position}>
-          <Popup>Selected region: {getInfo(position)}</Popup>
-        </Marker> */}
-      </MapContainer>
-    </>
+    <MapContainer
+      key={`${position[0]}-${position[1]}`}
+      center={position}
+      zoom={region.zoom}
+      style={{ height: "70vh", width: "100%" }}
+    >
+      <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
+      <Marker position={position}>
+        <Popup>{region.name}</Popup>
+      </Marker>
+    </MapContainer>
   );
-}
+};
 
 export default Map;

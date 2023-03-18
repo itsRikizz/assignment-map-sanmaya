@@ -4,12 +4,17 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { HomeOutlined, TeamOutlined, SettingOutlined } from "@ant-design/icons";
 import RegionInput from "./component/RegionInput";
+import Map from "./component/Map";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [selectedRegion, setSelectedRegion] = useState({
+    name: "World",
+    center: [0, 0],
+    zoom: 2,
+  });
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -18,6 +23,24 @@ function App() {
   const handleSelectRegion = (region) => {
     setSelectedRegion(region);
   };
+
+  const menuItems = [
+    {
+      key: "1",
+      icon: <HomeOutlined />,
+      label: "Home",
+    },
+    {
+      key: "2",
+      icon: <TeamOutlined />,
+      label: "Users",
+    },
+    {
+      key: "3",
+      icon: <SettingOutlined />,
+      label: "Settings",
+    },
+  ];
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -28,17 +51,12 @@ function App() {
         collapsed={collapsed}
         onCollapse={toggleSidebar}
       >
-        <Menu theme='light' mode='inline' defaultSelectedKeys={["1"]}>
-          <Menu.Item key='1' icon={<HomeOutlined />}>
-            Home
-          </Menu.Item>
-          <Menu.Item key='2' icon={<TeamOutlined />}>
-            Users
-          </Menu.Item>
-          <Menu.Item key='3' icon={<SettingOutlined />}>
-            Settings
-          </Menu.Item>
-        </Menu>
+        <Menu
+          theme='light'
+          mode='inline'
+          defaultSelectedKeys={["1"]}
+          items={menuItems}
+        />
       </Sider>
       <Layout className='site-layout'>
         <Header className='site-layout-background' style={{ padding: 0 }}>
@@ -49,17 +67,7 @@ function App() {
         <Content style={{ margin: "16px" }}>
           <RegionInput onSelect={handleSelectRegion} />
 
-          {selectedRegion && (
-            <MapContainer
-              style={{ height: "70vh", width: "100%" }}
-              center={[selectedRegion.lat, selectedRegion.lng]}
-              zoom={selectedRegion.zoom}
-            >
-              <TileLayer
-                url={`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`}
-              />
-            </MapContainer>
-          )}
+          <Map region={selectedRegion} />
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Map App ©2023 Created by Sanmay
