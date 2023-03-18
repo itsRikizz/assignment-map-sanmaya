@@ -1,6 +1,12 @@
 import React from "react";
 
-function RegionInfo({ currency, speedUnit, distanceUnit, volumeUnit, timezone }) {
+function RegionInfo({
+  currency,
+  speedUnit,
+  distanceUnit,
+  volumeUnit,
+  timezone,
+}) {
   return (
     <div>
       <h2>Region Info</h2>
