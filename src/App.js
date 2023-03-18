@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Layout, Button, Menu } from "antd";
-import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { HomeOutlined, TeamOutlined, SettingOutlined } from "@ant-design/icons";
 import RegionInput from "./component/RegionInput";
@@ -9,11 +8,11 @@ import Map from "./component/Map";
 const { Header, Content, Footer, Sider } = Layout;
 
 function App() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState({
     name: "World",
-    center: [0, 0],
-    zoom: 2,
+    center: [51.505, -0.091],
+    zoom: 13,
   });
 
   const toggleSidebar = () => {
