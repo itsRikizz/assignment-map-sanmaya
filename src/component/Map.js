@@ -9,7 +9,7 @@ const Map = ({ region }) => {
       key={`${position[0]}-${position[1]}`}
       center={position}
       zoom={region.zoom}
-      style={{ height: "100vh", width: "100%" }}
+      style={{ height: "65vh", width: "100%" }}
     >
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
       <Marker position={position}>
