@@ -13,7 +13,16 @@ const Map = ({ region }) => {
     >
       <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
       <Marker position={position}>
-        <Popup>{region.name}</Popup>
+        <Popup>
+          <div>
+            <h2>Region Info</h2>
+            <p>Currency: {region.currency}</p>
+            <p>Speed Unit: {region.speed}</p>
+            <p>Distance Unit: {region.distance}</p>
+            <p>Volume Unit: {region.volume}</p>
+            <p>Timezone: {region.timezone}</p>
+          </div>
+        </Popup>
       </Marker>
     </MapContainer>
   );
