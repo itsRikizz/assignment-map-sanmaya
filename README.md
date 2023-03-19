@@ -1,3 +1,13 @@
+#Description
+
+This app we have developed is primarily a map finding assignment. The user interface is designed to be simple and easy to use, with a header bar containing profile, login, and logout icons, and a sidebar with buttons for home, profile, settings, and a theme changer icon.
+
+To develop the app, I used ReactJS with React Leaflet and Ant Design (Antd) for styling. React Leaflet is a React component for building dynamic maps using Leaflet, while Antd is a UI framework for building React-based web applications.
+
+The app's main feature is to allow users to select a desired region and find it on the map. This is achieved through a series of user interactions, such as selecting a region from a dropdown menu or typing in a location search bar. Once the user selects a region, the app uses location services to find and display the region on the map.
+
+Overall, the app is designed to be user-friendly and easy to navigate, with a clean and simple interface. We hope that it will provide a useful tool for users to find and navigate to their desired regions.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

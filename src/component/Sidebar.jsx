@@ -46,14 +46,14 @@ function Sidebar() {
     <div>
       <Sider
         className='sider'
-        theme={isDarkMode ? "dark" : "light"} // use isDarkMode to determine the theme
+        theme={isDarkMode ? "dark" : "light"} //isDarkMode to determine the theme
         collapsible
         collapsed={collapsed}
         onCollapse={toggleSidebar}
         style={{ height: "100vh" }}
       >
         <Menu
-          theme={isDarkMode ? "dark" : "light"} // use isDarkMode to determine the theme
+          theme={isDarkMode ? "dark" : "light"} //isDarkMode to determine the theme
           mode='inline'
           defaultSelectedKeys={["1"]}
           items={menuItems}

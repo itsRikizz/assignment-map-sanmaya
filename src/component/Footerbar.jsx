@@ -9,6 +9,7 @@ function Footerbar() {
       <Footer style={{ textAlign: "center" }}>
         Map App ©2023 Created by Sanmay <br />
         {currentDate}
+        {/* It will show the current Date and time */}
       </Footer>
     </div>
   );
