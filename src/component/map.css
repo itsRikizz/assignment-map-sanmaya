@@ -1,0 +1,12 @@
+.cards {
+  /* display: flex; */
+  /* border: 1px solid red; */
+  /* flex-wrap: wrap; */
+  text-align: center;
+}
+p {
+  padding: 7px;
+}
+h2 {
+  text-align: center;
+}

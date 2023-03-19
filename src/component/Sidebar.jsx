@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Layout, Menu } from "antd";
-import { HomeOutlined, TeamOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  TeamOutlined,
+  SettingOutlined,
+  BulbOutlined,
+  BulbTwoTone,
+} from "@ant-design/icons";
+import { ThemeContext } from "../Context/ThemeContext";
 const { Sider } = Layout;
 
 function Sidebar() {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+
   const [collapsed, setCollapsed] = useState(true);
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
@@ -25,20 +34,26 @@ function Sidebar() {
       icon: <SettingOutlined />,
       label: "Settings",
     },
+    {
+      key: "4",
+      icon: isDarkMode ? <BulbTwoTone /> : <BulbOutlined />,
+      label: isDarkMode ? "Dark Mode" : "Light Mode",
+      onClick: toggleTheme,
+    },
   ];
 
   return (
     <div>
       <Sider
         className='sider'
-        theme='light'
+        theme={isDarkMode ? "dark" : "light"} // use isDarkMode to determine the theme
         collapsible
         collapsed={collapsed}
         onCollapse={toggleSidebar}
         style={{ height: "100vh" }}
       >
         <Menu
-          theme='light'
+          theme={isDarkMode ? "dark" : "light"} // use isDarkMode to determine the theme
           mode='inline'
           defaultSelectedKeys={["1"]}
           items={menuItems}
