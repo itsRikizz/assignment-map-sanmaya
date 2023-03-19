@@ -10,11 +10,8 @@ function RegionInput({ onSelect }) {
 
   const handleChange = (value) => {
     setSelectedRegion(value);
-  };
-
-  const handleLoadMap = () => {
-    if (regions[selectedRegion]) {
-      onSelect(regions[selectedRegion]);
+    if (regions[value]) {
+      onSelect(regions[value]);
     }
   };
 
@@ -38,13 +35,6 @@ function RegionInput({ onSelect }) {
           </Option>
         ))}
       </Select>
-      <Button
-        type='primary'
-        style={{ marginLeft: "16px" }}
-        onClick={handleLoadMap}
-      >
-        Load
-      </Button>
     </div>
   );
 }
